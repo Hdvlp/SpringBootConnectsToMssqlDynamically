@@ -7,13 +7,21 @@ import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 @Configuration
 public class Db { 
-
+    
     @Bean
     DataSource dataSource() {
-        final var dataSource = new SQLServerDataSource();
-        dataSource.setURL(DbConnectionSetUp.getURL());
-        dataSource.setUser(DbConnectionSetUp.getUser());
-        dataSource.setPassword(DbConnectionSetUp.getPassword());
+        final SQLServerDataSource dataSource = new SQLServerDataSource();
+        String url = DbConnectionSetUp.getURL();
+        String user = DbConnectionSetUp.getUser();
+        String password = DbConnectionSetUp.getPassword();
+        dataSource.setURL(url);
+        dataSource.setUser(user);
+        dataSource.setPassword(password);
+
+        // clearing after use
+        url = null;
+        user = null;
+        password = null;
         return dataSource;
     }
 
