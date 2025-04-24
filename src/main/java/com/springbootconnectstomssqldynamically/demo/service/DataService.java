@@ -18,7 +18,6 @@ public class DataService {
         this.dataSource = dataSource;
     }
 
-
     public List<String> getData(){
         List<String> names = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();

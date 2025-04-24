@@ -3,7 +3,6 @@ package com.springbootconnectstomssqldynamically.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.springbootconnectstomssqldynamically.demo.service.DataService;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RestController
 public class WebController {
 
-    @Autowired
-    DataService dataService;
+    private DataService dataService;
+
+    public WebController(DataService dataService){
+        this.dataService = dataService;
+    }
 
     @GetMapping("/")
     public String getIndex() {

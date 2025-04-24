@@ -6,15 +6,17 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Initial {
-    
-    @Autowired
+
     private DataSource dataSource;
+
+    public Initial(DataSource dataSource){
+        this.dataSource = dataSource;
+    }
     
     @Bean
     public int init(){
