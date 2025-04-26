@@ -11,19 +11,23 @@ public class DbConnectionSetUp {
         try{
             System.out.println("Start waiting.");
             for (int i = 0; i < 10; i++){
-                Thread.sleep(1000);
-                System.out.println("Waiting for " + i + " second(s).");
+                double msec = 1;
+                Thread.sleep((int) msec);
+                System.out.println("Waiting for " + msec/1000 + " second(s).");
             }
             System.out.println("Stop waiting.");
             passwordAfterWaitingSimulation = "YourPassword";
+
         } catch (Exception e){}
         
         return passwordAfterWaitingSimulation;
     }
 
     public static String getURL(){
-        String unencryptedURLSimulation =  "jdbc:sqlserver://localhost:1433;databaseName=customdb;encrypt=false;trustServerCertificate=false;";
-        return unencryptedURLSimulation;
+        //String unencryptedURLSimulation =  "jdbc:sqlserver://localhost:1433;databaseName=customdb;encrypt=false;trustServerCertificate=false;";
+        //return unencryptedURLSimulation;
+        String encryptedURLSimulation =  "jdbc:sqlserver://localhost:1433;databaseName=customdb;encrypt=true;trustServerCertificate=true;";
+        return encryptedURLSimulation;
     }
 
 }
