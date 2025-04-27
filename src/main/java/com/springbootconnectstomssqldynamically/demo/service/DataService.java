@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import com.springbootconnectstomssqldynamically.demo.config.DbConnectionSetUp;
 
 public class DataService {
 
-    private DataSource dataSource;
+    private SQLServerDataSource dataSource;
 
     public DataService(SQLServerDataSource dataSource){
         this.dataSource = dataSource;
@@ -68,7 +68,9 @@ public class DataService {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
 
-            String selectTableSql = "SELECT TOP 200 * FROM customdb.dbo.sample WHERE id > ?";
+            String databaseName = DbConnectionSetUp.getDatabaseName();
+
+            String selectTableSql = "SELECT TOP 200 * FROM "+databaseName+".dbo.sample WHERE id > ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(selectTableSql);
 

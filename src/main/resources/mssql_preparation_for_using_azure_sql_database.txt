@@ -1,0 +1,104 @@
+# MS SQL Server: 
+# Preparation for using Azure SQL Database
+
+https://portal.azure.com
+
+SQL databases
+
+Create
+
+Want to try Azure SQL Database for free? Create a free serverless database with the first 100,000 vCore seconds, 32GB of data, and 32GB of backup storage free per month for the lifetime of the subscription. Limit ten free databases per subscription. 
+
+Apply offer
+
+Free database offer applied! You got first 100,000 vCore seconds and 32GB of data & 32GB of backup storage free per month for lifetime of the subscription.
+
+Database name
+randqlejmpxpfrtboknoqdks
+
+Server
+randqlejmpxpfrtboknoqdks
+.database.windows.net
+
+Use SQL authentication
+
+Server admin login
+adminranducuhylfpicptyhvwhxss
+
+Password
+K9WqisQSx9OdUVkFf78W
+
+
+Network connectivity
+Public endpoint
+
+
+Firewall rules
+Add current client IP address
+Yes
+
+
+Connection policy
+Redirect - Clients establish connections directly to the node hosting the database
+
+
+Minimum TLS version
+TLS 1.2
+
+
+Enable Microsoft Defender for SQL
+Not now
+
+
+Enable secure enclaves
+OFF
+
+Database collation
+Collation
+Latin1_General_100_CS_AI_WS_SC_UTF8
+
+
+Maintenance window
+System default 5pm to 8am
+
+
+Tags
+database202504
+
+
+Create
+
+
+#
+Microsoft SQL Server Management Studio
+
+Server type
+Database Engine
+
+Server name
+randqlejmpxpfrtboknoqdks.database.windows.net
+
+Authentication
+SQL Server Authentication
+
+Login
+adminranducuhylfpicptyhvwhxss
+
+Password
+K9WqisQSx9OdUVkFf78W
+
+Encryption
+Mandatory
+
+Uncheck Trust server certificate
+
+#SQL
+USE randqlejmpxpfrtboknoqdks;
+GO
+SELECT TOP 200 * FROM randqlejmpxpfrtboknoqdks.dbo.sample;
+GO
+
+
+
+
+

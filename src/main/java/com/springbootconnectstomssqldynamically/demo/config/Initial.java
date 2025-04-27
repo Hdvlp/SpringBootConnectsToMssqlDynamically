@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
+import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 @Component
 public class Initial {
 
-    private DataSource dataSource;
+    private SQLServerDataSource dataSource;
 
-    public Initial(DataSource dataSource){
+    public Initial(SQLServerDataSource dataSource){
         this.dataSource = dataSource;
     }
     
@@ -23,12 +23,14 @@ public class Initial {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
 
-            String createTableSql = "IF OBJECT_ID(N'customdb.dbo.sample', N'U') IS NULL BEGIN " + 
-            "CREATE TABLE customdb.dbo.sample(id int NOT NULL IDENTITY(1,1), name NVARCHAR(60), PRIMARY KEY(id)); " + 
+            String databaseName = DbConnectionSetUp.getDatabaseName();
+
+            String createTableSql = "IF OBJECT_ID(N'"+databaseName+".dbo.sample', N'U') IS NULL BEGIN " + 
+            "CREATE TABLE "+databaseName+".dbo.sample(id int NOT NULL IDENTITY(1,1), name NVARCHAR(60), PRIMARY KEY(id)); " + 
             "END;";
 
             statement.execute(createTableSql);
-            String insertSql = "INSERT INTO customdb.dbo.sample (name) VALUES (?)";
+            String insertSql = "INSERT INTO "+databaseName+".dbo.sample (name) VALUES (?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertSql);
 
